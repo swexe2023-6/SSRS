@@ -1,0 +1,27 @@
+<%= form_tag ({ action: :create }) do %>
+  <%= label_tag :uid, 'ユーザー名' %>
+  <%= text_field_tag :uid %>
+  <%= label_tag :password, 'パスワード' %>
+  <%= password_field_tag :password %>
+  <%= label_tag :password_confirmation, 'パスワード(確認)' %>
+  <%= password_field_tag :password_confirmation %>
+  <%= submit_tag '新規登録' %>
+<% end %>
+
+<h2>ユーザー一覧</h2>
+
+<table>
+  <tr>
+    <th>ユーザー名</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+          <%= user.uid %>
+          <%= link_to '削除', "/users/#{user.id}", data: { turbo_method: :delete } %>
+      </td>
+    </tr>
+  <% end %>
+</table></br>
+
+<p><%= link_to '戻る', root_path %></p>
