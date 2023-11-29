@@ -1,6 +1,6 @@
 <%= form_tag ({ action: :create }) do %>
-  <%= label_tag :uid, 'ユーザー名' %>
-  <%= text_field_tag :uid %>
+  <%= label_tag :email, 'メールアドレス' %>
+  <%= text_field_tag :email %>
   <%= label_tag :password, 'パスワード' %>
   <%= password_field_tag :password %>
   <%= label_tag :password_confirmation, 'パスワード(確認)' %>
@@ -17,7 +17,7 @@
   <% @users.each do |user| %>
     <tr>
       <td>
-          <%= user.uid %>
+          <%= user.email %>
           <%= link_to '削除', "/users/#{user.id}", data: { turbo_method: :delete } %>
       </td>
     </tr>

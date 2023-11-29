@@ -8,14 +8,17 @@ class UsersController < ApplicationController
   end
   
   def create
-    if User.exists?(uid: params[:uid])
+    if User.exists?(email: params[:email])
       flash[:alert] = '※そのユーザIDは使えんでぇ～'
       redirect_to new_user_path
     else
       #hashed_password = BCrypt::Password.create(params[:pass])
-      user = User.new(uid: params[:uid], password: params[:password], password_confirmation: params[:password_confirmation])
-      user.save
-      redirect_to users_path
+      user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+      if user.save
+        redirect_to root_path
+      else
+        render 'new'
+      end
     end
   end
   
