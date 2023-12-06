@@ -16,6 +16,8 @@
             align-items: center;
             max-width: 90ch; /* コンテンツ全体の横幅を90chに制限 */
             margin: 0 auto; /* ページ中央に配置 */
+            background-color:#D2ECF9;
+            font-family:-apple-system, "system-ui", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif, "Segoe UI Emoji";
         }
 
         /* 検索エリアの幅を広げる */
@@ -25,14 +27,14 @@
     </style>
 </head>
 
-<body class="p-5">
+<body class="p-5 pb-2.5">
     
     <div>
         <!--ナビゲーションバー-->
         <!-- ここにナビゲーションバーのコード -->
         
         <nav class="navbar navbar-expand bg-body-tertiary">
-              <div class="container-fluid">
+              <div class="container-fluid ">
                   <a class="navbar-brand" href="#">SSRS</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
@@ -47,17 +49,17 @@
               </div>
           </nav>
                 
-        <div class="centered">
+        <div class="centered mt-3">
             <!--検索フォーム-->
             <form class="form-inline justify-content-center"> <!-- 検索フォーム -->
-                <div class="my-1">
+                <div class="my-5">
                     <label class="sr-only" for="inlineFormInputName">声優さんの名前</label>
                     <input type="text" class="form-control wider" id="inlineFormInputName" placeholder="小栗旬(漢字で入力してください)">
                 </div>
 
-                <div class="border p-8">
+                <div class="border-solid border-2 border-sky-500">
                     <!-- フィルター部分 -->
-                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">放送年度</label>
+                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">放送年度</label>
                   <!-- 放送年度の選択肢 -->
   
                   <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
@@ -97,8 +99,8 @@
 
     <!-- 一覧表示 -->
     <div class="centered">
-        <div class="text-center">アニメ検索 <!-- 中央揃え -->
-            <div class="card p-5 w-50">
+        <div class="text-center">アニメ検索 
+            <div class="card p-5 w-100">
                 <!-- カードの内容 -->
             </div>
         </div>
