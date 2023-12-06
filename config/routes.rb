@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'shangri_la/login_form'
   post 'shangri_la/login'
+  get 'shangri_la/logout'
  
   resources :users
 end

@@ -42,7 +42,11 @@
                   <div class="collapse navbar-collapse" id="navbarNav">
                       <ul class="navbar-nav">
                           <li class="nav-item">
-                              <a class="nav-link active" aria-current="page" href="#">サインイン</a>
+                            <% if current_user %>  <!-- ログイン中の場合 -->
+                              <a class="nav-link active" aria-current="page" href="shangri_la/logout">サインアウト</a>  
+                            <% else %> <!-- ログインしていない場合 -->
+                              <a class="nav-link active" aria-current="page" href="shangri_la/login_form">サインイン</a>
+                            <% end %>
                           </li>
                       </ul>
                   </div>

@@ -1,27 +1,47 @@
-<%= form_tag ({ action: :create }) do %>
-  <%= label_tag :email, 'メールアドレス' %>
-  <%= text_field_tag :email %>
-  <%= label_tag :password, 'パスワード' %>
-  <%= password_field_tag :password %>
-  <%= label_tag :password_confirmation, 'パスワード(確認)' %>
-  <%= password_field_tag :password_confirmation %>
-  <%= submit_tag '新規登録' %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-body">
+          <%= form_tag({ action: :create }, class: 'form-group') do %>
+            <div class="mb-3">
+              <%= label_tag :email, 'メールアドレス', class: 'form-label' %>
+              <%= text_field_tag :email, nil, class: 'form-control' %>
+            </div>
+            <div class="mb-3">
+              <%= label_tag :password, 'パスワード', class: 'form-label' %>
+              <%= password_field_tag :password, nil, class: 'form-control' %>
+            </div>
+            <div class="mb-3">
+              <%= label_tag :password_confirmation, 'パスワード(確認)', class: 'form-label' %>
+              <%= password_field_tag :password_confirmation, nil, class: 'form-control' %>
+            </div>
+            <%= submit_tag '新規登録', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<h2>ユーザー一覧</h2>
+  <h2 class="mt-5">ユーザー一覧</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ユーザー名</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to '削除', "/users/#{user.id}", method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: '本当に削除しますか？' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<table>
-  <tr>
-    <th>ユーザー名</th>
-  </tr>
-  <% @users.each do |user| %>
-    <tr>
-      <td>
-          <%= user.email %>
-          <%= link_to '削除', "/users/#{user.id}", data: { turbo_method: :delete } %>
-      </td>
-    </tr>
-  <% end %>
-</table></br>
-
-<p><%= link_to '戻る', root_path %></p>
+  <p class="text-center mt-3"><%= link_to '戻る', shangri_la_login_form_path, class: 'btn btn-secondary' %></p>
+</div>
