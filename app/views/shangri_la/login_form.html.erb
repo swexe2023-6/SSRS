@@ -1,11 +1,11 @@
-<%= form_tag '/top/login', method: :post, data:{turbo:false} do %>
-    <%= label_tag :uid, 'ユーザーID' %>
-    <%= text_field_tag :uid %>
-    <%= label_tag :pass, 'パスワード' %>
-    <%= password_field_tag :pass %>
+<%= form_tag '/shangri_la/login', method: :post, data:{turbo:false} do %>
+    <%= label_tag :email, 'ユーザーID' %>
+    <%= text_field_tag :email %>
+    <%= label_tag :password, 'パスワード' %>
+    <%= password_field_tag :password %>
     <%= submit_tag 'ログイン' %>
 <% end %>
 
 <p><%= link_to '戻る', root_path %></p>
 
-<p><%= link_to 'サインアップはこちら', root_path %></p>
+<p><%= link_to 'サインアップはこちら', new_user_path %></p>
