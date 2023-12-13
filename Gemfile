@@ -64,6 +64,13 @@ group :development do
   # gem "spring"
   # Gemfile
   gem 'bootstrap', '~> 5.1.3'
+  
+  gem 'graphql'
+  group :development do
+    gem 'graphiql-rails'
+  end
+  
+  gem 'faraday'
 
 end
 
