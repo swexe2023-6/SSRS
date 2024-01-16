@@ -57,12 +57,13 @@
             <!--検索フォーム-->
 
                 <div class="border-solid border-2 border-sky-500">
-                    <!-- フィルター部分 -->
+                    
                     <%= form_tag({ action: :search }, method: :post, data: { turbo: false }) do %>
 
+                    <!-- フィルター部分 -->
                         <div class="my-5">
-                            <label class="sr-only" for="inlineFormInputName">声優さんの名前</label>
-                            <input type="text" class="form-control wider" id="inlineFormInputName" placeholder="小栗旬(漢字で入力してください)">
+                            <label class="sr-only" for="inlineFormInputName">キーワード検索</label>
+                            <input type="text" class="form-control wider" id="inlineFormInputName" placeholder="小栗旬(漢字で入力してください)" name="keyword">
                         </div>
 
                         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">放送年度</label>
@@ -108,16 +109,17 @@
         <div class="text-center">アニメ検索 
             <div class="card p-5 w-100">
                 <!-- カードの内容 -->
-                <% if @result.present? %>
-                    <% @result.each do |item| %>
-                        <div class="card-body">
-                            <p>ID: <%= item['id'] %></p>
-                            <p>Title: <%= item['title'] %></p>
-                            <p>Public URL: <%= item['public_url'] %></p>
-                            <hr>
-                        </div>
-                    <% end %>
-                <% else %>
+                <% if defined?(@result) && @result.present? %>
+                        <% @result.each do |item| %>
+                            <div class="card-body">
+                                <!-- puts "最初のidは#{result[i]['id']}\n" --> 
+                                <p>ID: <%= item['id'] %></p>
+                                <p>Title: <%= item['title'] %></p>
+                                <p>Public URL: <%= item['public_url'] %></p>
+                                <hr>
+                            </div>
+                        <% end %>
+                <% elsif defined?(@result) && @result.empty? %>
                     <p>No results found.</p>
                 <% end %>
             </div>

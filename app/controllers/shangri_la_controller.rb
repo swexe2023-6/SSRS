@@ -31,6 +31,9 @@ class ShangriLaController < ApplicationController
   end
   
   def search
+    
+    puts params[:keyword]
+    
     # APIのURLと必要なパラメータを設定
     url = URI.parse("https://anime-api.deno.dev/anime/v1/master/#{params[:anime_year]}/#{params[:anime_cool]}")
     
@@ -40,13 +43,13 @@ class ShangriLaController < ApplicationController
     response = Net::HTTP.get_response(url)
     
     # レスポンスをJSONとしてパース
-    @result = JSON.parse(response.body)
+    all_results = JSON.parse(response.body)
+    #@result = JSON.parse(response.body)
+
+    # キーワードに合致するもののみを抽出
+    @result = all_results.select {|item| params[:keyword].present? && item['title'].include?(params[:keyword])}
     
     # レスポンスを表示
-    
-    # puts "最初のidは#{result[i]['id']}\n" 
-
-    
     render :index
   end
 
