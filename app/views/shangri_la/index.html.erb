@@ -48,6 +48,7 @@
                               <a class="nav-link active" aria-current="page" href="shangri_la/login_form">サインイン</a>
                             <% end %>
                           </li>
+                          <a class="nav-link active" aria-current="page" href="shangri_la/likes">お気に入り</a>
                       </ul>
                   </div>
               </div>
@@ -110,15 +111,15 @@
             <div class="card p-5 w-100">
                 <!-- カードの内容 -->
                 <% if defined?(@result) && @result.present? %>
-                        <% @result.each do |item| %>
-                            <div class="card-body">
-                                <!-- puts "最初のidは#{result[i]['id']}\n" --> 
-                                <p>ID: <%= item['id'] %></p>
-                                <p>Title: <%= item['title'] %></p>
-                                <p>Public URL: <%= item['public_url'] %></p>
-                                <hr>
-                            </div>
-                        <% end %>
+                    <% @result.each do |item| %>
+                        <div class="card-body">
+                            <!-- puts "最初のidは#{result[i]['id']}\n" --> 
+                            <p>ID: <%= item['id'] %></p>
+                            <p>Title: <%= item['title'] %></p>
+                            <p><a href="<%= shangri_la_info_path %>?item=<%= item.to_json %>" class="btn btn-primary">詳細ページへ</a></p>
+                            <hr>
+                        </div>
+                    <% end %>
                 <% elsif defined?(@result) && @result.empty? %>
                     <p>No results found.</p>
                 <% end %>

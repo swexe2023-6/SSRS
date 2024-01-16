@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post 'shangri_la/login'
   get 'shangri_la/logout'
   post 'shangri_la/search'
+  get 'shangri_la/info'
+  get 'shangri_la/info_page'
+  get 'shangri_la/likes'
  
   resources :users
 end
