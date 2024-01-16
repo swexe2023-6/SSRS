@@ -71,6 +71,8 @@ group :development do
   end
   
   gem 'faraday'
+  
+  gem 'httpclient'
 
 end
 

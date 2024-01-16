@@ -55,49 +55,51 @@
                 
         <div class="centered mt-3">
             <!--検索フォーム-->
-            <form class="form-inline justify-content-center"> <!-- 検索フォーム -->
-                <div class="my-5">
-                    <label class="sr-only" for="inlineFormInputName">声優さんの名前</label>
-                    <input type="text" class="form-control wider" id="inlineFormInputName" placeholder="小栗旬(漢字で入力してください)">
-                </div>
 
                 <div class="border-solid border-2 border-sky-500">
                     <!-- フィルター部分 -->
-                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">放送年度</label>
-                  <!-- 放送年度の選択肢 -->
+                    <%= form_tag({ action: :search }, method: :post, data: { turbo: false }) do %>
+
+                        <div class="my-5">
+                            <label class="sr-only" for="inlineFormInputName">声優さんの名前</label>
+                            <input type="text" class="form-control wider" id="inlineFormInputName" placeholder="小栗旬(漢字で入力してください)">
+                        </div>
+
+                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">放送年度</label>
+                        <!-- 放送年度の選択肢 -->
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="anime_year">
+                            <option selected>指定なし</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select><br>
   
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                      <option selected>指定なし</option>
-                      <option value="2015">2015</option>
-                      <option value="2016">2016</option>
-                      <option value="2017">2017</option>
-                      <option value="2018">2018</option>
-                      <option value="2019">2019</option>
-                      <option value="2020">2020</option>
-                      <option value="2021">2021</option>
-                      <option value="2022">2022</option>
-                      <option value="2023">2023</option>
-                  </select><br>
+                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">放送されるクール</label>
+                        <!-- 放送されるクールの選択肢 -->
+                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="anime_cool">
+                            <option selected>指定なし</option>
+                            <option value="2">春</option>
+                            <option value="3">夏</option>
+                            <option value="4">秋</option>
+                            <option value="1">冬</option>
+                        </select><br>
   
-                  <label class="my-1 mr-2" for="inlineFormCustomSelectPref">放送されるクール</label>
-                  <!-- 放送されるクールの選択肢 -->
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                      <option selected>指定なし</option>
-                      <option value="1">春</option>
-                      <option value="2">夏</option>
-                      <option value="3">秋</option>
-                      <option value="3">冬</option>
-                  </select><br>
-  
-                  <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                      <input type="checkbox" class="custom-control-input" id="customControlInline">
-                      <label class="custom-control-label" for="customControlInline">Remember filter setting</label>
-                  </div>
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">Remember filter setting</label>
+                        </div>
+                        
+                        <%= submit_tag '検索', class: 'btn btn-primary btn-lg' %>
+                    <% end %>
                     <!-- ... フィルター部分のコード ... -->
                 </div>
-
-                <button type="submit" class="btn btn-primary my-1">検索</button>
-            </form>
+                
         </div>
     </div>
 
@@ -106,6 +108,18 @@
         <div class="text-center">アニメ検索 
             <div class="card p-5 w-100">
                 <!-- カードの内容 -->
+                <% if @result.present? %>
+                    <% @result.each do |item| %>
+                        <div class="card-body">
+                            <p>ID: <%= item['id'] %></p>
+                            <p>Title: <%= item['title'] %></p>
+                            <p>Public URL: <%= item['public_url'] %></p>
+                            <hr>
+                        </div>
+                    <% end %>
+                <% else %>
+                    <p>No results found.</p>
+                <% end %>
             </div>
         </div>
     </div>
