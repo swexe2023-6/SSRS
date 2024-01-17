@@ -104,6 +104,9 @@ GEM
       sprockets-rails
     graphql (2.2.5)
       racc (~> 1.4)
+    graphql-client (0.18.0)
+      activesupport (>= 3.0)
+      graphql
     httpclient (2.8.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
@@ -250,6 +253,7 @@ DEPENDENCIES
   debug
   graphiql-rails
   graphql
+  graphql-client
   httpclient
   importmap-rails
   jbuilder

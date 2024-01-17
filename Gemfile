@@ -50,7 +50,9 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'graphiql-rails'
+gem 'graphql-client'
 gem 'graphql'
+
 
 gem 'bootstrap', '~> 5.1.3'
   
